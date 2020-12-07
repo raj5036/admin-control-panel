@@ -2,6 +2,11 @@
 
 @section('content')
 
+    @if (session('deleted_user'))
+      <p class="bg-danger">{{session('deleted_user')}}</p>
+    @endif
+
+
     <h1>Admin user page</h1>
 
     <table class="table table-striped">
