@@ -40,7 +40,7 @@
 
                 {{-- Submit Button --}}
             <div class="form-group">
-                    {!! Form::submit('Edit User',['class'=>'btn btn-primary col-sm-6'])!!}
+                    {!! Form::submit('Update User',['class'=>'btn btn-primary col-sm-6'])!!}
                 </div>
             {!! Form::close() !!}
 
