@@ -16,5 +16,16 @@ class AdminMediasController extends Controller
     public function create(){
 
         return view('admin.media.create');
+    
     }
+    public function store(Request $request){
+        $file=$request->file('file');
+        $name=time().$file->getClientOriginalName();
+        $file->move('images',$name);
+
+        Photo::create(['file'=>$name]);
+
+        
+    }
+
 }
