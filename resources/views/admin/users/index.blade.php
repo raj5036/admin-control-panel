@@ -2,9 +2,10 @@
 
 @section('content')
 
-    @if (session('deleted_user'))
-      <p class="bg-danger">{{session('deleted_user')}}</p>
-    @endif
+@if (session('deleted_user'))
+  <p class="alert alert-danger">{{session('deleted_user')}}</p>
+@endif
+
 
 
     <h1>Admin user page</h1>

@@ -2,6 +2,15 @@
 
 @section('content')
     
+    @if (session('added_media'))
+        <p class="alert alert-success">{{session('added_media')}}</p>
+    @endif
+
+
+    @if (session('deleted_media'))
+        <p class="alert alert-danger">{{session('deleted_media')}}</p>
+    @endif
+
     <h1>Media</h1>
     @if ($photos)
   
