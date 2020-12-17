@@ -9,41 +9,50 @@
 
                 <!-- Author -->
                 <p class="lead">
-                    by <a href="#">Start Bootstrap</a>
+                    by <a href="#">{{$post->user->name}}</a>
                 </p>
 
                 <hr>
 
                 <!-- Date/Time -->
-                <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
+                <p><span class="glyphicon glyphicon-time"></span> Posted {{$post->created_at->diffForHumans()}}</p>
 
                 <hr>
 
                 <!-- Preview Image -->
-                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                <img class="img-responsive" src={{$post->photo ? $post->photo->file : '/images/placeholder.gif'}} alt="">
 
                 <hr>
 
                 <!-- Post Content -->
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
+                <p class="lead">
+                    {{$post->body}}
+                </p>
 
                 <hr>
-
+                @if (session('comment_created'))
+                    <p class="alert alert-success">{{session('comment_created')}}</p>
+                @endif
                 <!-- Blog Comments -->
 
                 <!-- Comments Form -->
                 <div class="well">
                     <h4>Leave a Comment:</h4>
-                    <form role="form">
+                    
+                    {!! Form::open(['method'=>'POST', 'action'=> 'PostCommentsController@store']) !!}
+
+                        <input type="hidden" name="post_id" value="{{$post->id}}">
+
+
                         <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                            {!! Form::label('body', 'Body:') !!}
+                            {!! Form::textarea('body', null, ['class'=>'form-control','rows'=>3])!!}
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+
+                        <div class="form-group">
+                            {!! Form::submit('Submit comment', ['class'=>'btn btn-primary']) !!}
+                        </div>
+                    {!! Form::close() !!}
                 </div>
 
                 <hr>
@@ -89,4 +98,11 @@
                     </div>
                 </div>
 
+@endsection
+
+@section('categories')
+    <h4>Blog Categories</h4>
+    
+        {{$post->category->name}}
+    </div>
 @endsection
