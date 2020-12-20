@@ -13,7 +13,7 @@ class Comment extends Model
         'email',
         'body',
         'is_active', 
-
+        'photo'
     ];
 
     public function post(){

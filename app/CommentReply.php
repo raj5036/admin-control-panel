@@ -12,7 +12,7 @@ class CommentReply extends Model
         'email',
         'body',
         'is_active',
-        
+        'photo'
     ];
 
     public function comment(){

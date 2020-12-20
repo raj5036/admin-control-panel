@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head> 
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -121,6 +121,8 @@
     <!-- jQuery -->
     <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
+
+@yield('scripts')
 
 </body>
 
